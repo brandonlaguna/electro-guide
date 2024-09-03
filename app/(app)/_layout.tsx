@@ -66,62 +66,21 @@ export default function TabLayout() {
               title: "Introduccion",
             }}
           />
-        </Drawer>
-        {/* <Tabs
-          screenOptions={{
-            tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-            headerShown: false,
-          }}
-        >
-          <Tabs.Screen
-            name="index"
+          <Drawer.Screen
+            name="home/index" // This is the name of the page and must match the url from root
             options={{
+              drawerLabel: "Home",
               title: "Home",
-              tabBarIcon: ({ color, focused }) => (
-                <TabBarIcon
-                  name={focused ? "home" : "home-outline"}
-                  color={color}
-                />
-              ),
             }}
           />
-          <Tabs.Screen
-            name="explore"
+          <Drawer.Screen
+            name="excercise/index" // This is the name of the page and must match the url from root
             options={{
-              title: "Explore",
-              tabBarIcon: ({ color, focused }) => (
-                <TabBarIcon
-                  name={focused ? "code-slash" : "code-slash-outline"}
-                  color={color}
-                />
-              ),
+              drawerLabel: "Ejercicios",
+              title: "Ejercicios",
             }}
           />
-          <Tabs.Screen
-            name="evaluation"
-            options={{
-              title: "Evaluation",
-              tabBarIcon: ({ color, focused }) => (
-                <TabBarIcon
-                  name={focused ? "code-slash" : "code-slash-outline"}
-                  color={color}
-                />
-              ),
-            }}
-          />
-          <Tabs.Screen
-            name="introduction/index"
-            options={{
-              title: "Introduccion",
-              tabBarIcon: ({ color, focused }) => (
-                <TabBarIcon
-                  name={focused ? "code-slash" : "code-slash-outline"}
-                  color={color}
-                />
-              ),
-            }}
-          />
-        </Tabs> */}
+        </Drawer>
       </NativePaperProvider>
     </Provider>
   );

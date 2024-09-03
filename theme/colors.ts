@@ -37,34 +37,35 @@ export const whiteColor = {
   900: alpha(mainWhite, 0.9),
 };
 
+const mainGreyLight = "#121F43";
 export const greyLight = {
-  50: "",
-  100: "",
-  200: "",
-  300: "",
-  400: "",
-  500: "",
-  600: "",
-  700: "",
-  800: "",
-  900: "",
-  main: "#121F43",
+  50: alpha(mainGreyLight, 0.05),
+  100: alpha(mainGreyLight, 0.1),
+  200: alpha(mainGreyLight, 0.2),
+  300: alpha(mainGreyLight, 0.3),
+  400: alpha(mainGreyLight, 0.4),
+  500: alpha(mainGreyLight, 0.5),
+  600: alpha(mainGreyLight, 0.6),
+  700: alpha(mainGreyLight, 0.7),
+  800: alpha(mainGreyLight, 0.8),
+  900: alpha(mainGreyLight, 0.9),
+  main: mainGreyLight,
 };
 
 /** Color for dark Theme */
-
+export const mainGreyDark = "#303030";
 export const greyDark = {
-  main: "#303030",
-  900: "",
-  800: "",
-  700: "",
-  600: "",
-  500: "",
-  400: "",
-  300: "",
-  200: "",
-  100: "",
-  50: "",
+  main: mainGreyDark,
+  900: alpha(mainGreyDark, 0.9),
+  800: alpha(mainGreyDark, 0.8),
+  700: alpha(mainGreyDark, 0.7),
+  600: alpha(mainGreyDark, 0.6),
+  500: alpha(mainGreyDark, 0.5),
+  400: alpha(mainGreyDark, 0.4),
+  300: alpha(mainGreyDark, 0.3),
+  200: alpha(mainGreyDark, 0.2),
+  100: alpha(mainGreyDark, 0.1),
+  50: alpha(mainGreyDark, 0.05),
 };
 export const success = {
   light: "#198754",

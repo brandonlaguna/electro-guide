@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { greyDark, primary, whiteColor } from "./colors";
+import { greyDark, greyLight, primary, whiteColor } from "./colors";
 
 export const themeLight = StyleSheet.create({
   container: {
@@ -9,15 +9,15 @@ export const themeLight = StyleSheet.create({
     backgroundColor: "#fff",
   },
   text: {
-    color: "",
+    color: greyDark[900],
   },
   tabBar: {
-    backgroundColor: primary.main,
-    color: whiteColor.main,
+    backgroundColor: whiteColor.main,
+    color: primary.main,
   },
   drawer: {
-    backgroundColor: primary.main,
-    color: whiteColor.main,
+    backgroundColor: whiteColor.main,
+    color: primary.main,
   },
   mainLayout: {
     backgroundColor: whiteColor.main,
@@ -25,5 +25,16 @@ export const themeLight = StyleSheet.create({
   textInput: {
     backgroundColor: primary.main,
     color: greyDark[100],
+  },
+  typography: {
+    color: greyLight.main,
+  },
+  stepButtonArrow: {
+    backgroundColor: greyLight[500],
+    color: whiteColor.main,
+  },
+  buttonAnswerStep: {
+    backgroundColor: greyLight[100],
+    color: primary.main,
   },
 });

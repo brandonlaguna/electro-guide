@@ -2,13 +2,10 @@ import { P } from "@/components/Common/Typography";
 import MainLayout from "@/components/MainLayout";
 import { StepTest } from "@/components/StepTest";
 import { View } from "react-native";
-import { BasicDefinition } from "./Contents";
-import useIntroduction from "./hook/useIntroduction";
+import { useExcercise } from "./hook/useExcercise";
 
-const Introduction = () => {
-  const { responseAnswer, renderStep, handleBackStep, handleNextStep } =
-    useIntroduction();
-
+const Excercise = () => {
+  const { renderStep, handleBackStep, handleNextStep } = useExcercise();
   return (
     <MainLayout>
       {renderStep !== null && (
@@ -28,4 +25,4 @@ const Introduction = () => {
   );
 };
 
-export default Introduction;
+export default Excercise;

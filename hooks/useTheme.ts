@@ -26,6 +26,18 @@ const useThemeProvider = () => {
       colorScheme === "light"
         ? themesOptions["light"].palette.mainLayout
         : themesOptions["dark"].palette.mainLayout,
+    typography:
+      colorScheme === "light"
+        ? themesOptions["light"].palette.typography
+        : themesOptions["dark"].palette.typography,
+    stepButtonArrow:
+      colorScheme === "light"
+        ? themesOptions["light"].palette.stepButtonArrow
+        : themesOptions["dark"].palette.stepButtonArrow,
+    buttonAnswerStep:
+      colorScheme === "light"
+        ? themesOptions["light"].palette.buttonAnswerStep
+        : themesOptions["dark"].palette.buttonAnswerStep,
   };
 
   return theme;
