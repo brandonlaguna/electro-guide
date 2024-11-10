@@ -5,7 +5,7 @@ const useThemeProvider = () => {
   const colorScheme = useColorScheme();
   const theme = {
     ...styles,
-    fontSize: { base: 16 },
+    fontSize: { base: 15 },
     themeContainerStyle:
       colorScheme === "light"
         ? themesOptions["light"].palette.container
@@ -38,6 +38,14 @@ const useThemeProvider = () => {
       colorScheme === "light"
         ? themesOptions["light"].palette.buttonAnswerStep
         : themesOptions["dark"].palette.buttonAnswerStep,
+    textInput:
+      colorScheme === "light"
+        ? themesOptions["light"].palette.textInput
+        : themesOptions["dark"].palette.textInput,
+    mainButton:
+      colorScheme === "light"
+        ? themesOptions["light"].palette.mainButton
+        : themesOptions["dark"].palette.mainButton,
   };
 
   return theme;

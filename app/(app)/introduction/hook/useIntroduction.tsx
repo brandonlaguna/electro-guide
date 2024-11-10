@@ -16,6 +16,14 @@ import {
 } from "@/store/slices/evaluationSlice";
 import { router } from "expo-router";
 
+const getRandomTypeAnswer = (exclude: number) => {
+  let newTypeAnswer;
+  do {
+    newTypeAnswer = Math.floor(Math.random() * 3) + 1;
+  } while (newTypeAnswer === exclude);
+  return newTypeAnswer;
+};
+
 const useIntroduction = () => {
   const dispatch = useDispatch();
   const [indexStep, setIndexStep] = useState<number>(0);
@@ -23,9 +31,8 @@ const useIntroduction = () => {
   const [typeAnswers, setTypeAnswers] = useState<number>(
     Math.floor(Math.random() * 3) + 1
   );
-  const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState<number>(0);
   const [responseAnswer, setResponseAnswer] = useState<number>(0);
-  const { introduction } = useSelector(evaluationSelector);
+  const { introduction, typeQuestions } = useSelector(evaluationSelector);
 
   const [
     [isLoadingIntroduction, databaseIntroduction],
@@ -44,7 +51,7 @@ const useIntroduction = () => {
         totalProgress: steps.length + questionnaireQuestions.length - 1,
         completedProgress: indexStep,
         questionnaire: {
-          ...introduction.questionnaire,
+          total: questionnaireQuestions.length,
           correct: responseAnswer,
         },
       };
@@ -80,7 +87,6 @@ const useIntroduction = () => {
   const handleNextStep = async () => {
     dispatch(setLoading(true));
     const limitStep = steps.length + questionnaireQuestions.length - 1;
-    console.log("🚀 ~ handleNextStep ~ indexStep:", indexStep, limitStep);
     if (indexStep < limitStep) {
       if (introduction) {
         let localIntroduction = introduction;
@@ -89,12 +95,12 @@ const useIntroduction = () => {
       }
     } else {
       await handleSaveData().then(() => {
+        console.log("vamos a gurdar todo a la bd", responseAnswer);
         setIndexStep(0);
         setResponseAnswer(0);
         setRenderStep(getRenderView(0));
         router.push("/home");
       });
-      console.log("vamos a gurdar todo a la bd", responseAnswer);
     }
     dispatch(setLoading(false));
   };
@@ -137,11 +143,34 @@ const useIntroduction = () => {
       dispatch(setIntroduction(introduction));
     }
     setRenderStep(getRenderView(indexStep));
+    return () => {};
   }, []);
 
   useEffect(() => {
-    console.log("currentCorrectAnswer:", currentCorrectAnswer);
-  }, [currentCorrectAnswer]);
+    const objectValue: IProgressData = JSON.parse(databaseIntroduction ?? "{}");
+    if (objectValue !== undefined || objectValue !== null) {
+      /** Reset database */
+      const initialValues: IProgressData = {
+        progressName: "introduction",
+        totalProgress: steps.length,
+        completedProgress: 0,
+        stepsValues: [],
+        questionnaire: {
+          total: steps.length,
+          correct: 0,
+        },
+      };
+      console.log("🚀 REINICIANDO VALORES DE INTRODUCTION:", initialValues);
+      setDatabaseIntroduction(JSON.stringify(initialValues));
+      dispatch(setIntroduction(initialValues));
+      setTypeAnswers(getRandomTypeAnswer(typeAnswers));
+    }
+  }, [isLoadingIntroduction]);
+
+  useEffect(() => {
+    setTypeAnswers(typeQuestions +1);
+    console.log("🚀 ~ useEffect ~ typeQuestions:{{{{{{{{{{{{{{{{{{{{", typeQuestions)
+  }, [typeQuestions]);
 
   return {
     indexStep,

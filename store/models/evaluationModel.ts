@@ -6,4 +6,5 @@ export interface IEvaluationModel {
   evaluation: IProgressData | null;
   progress: number;
   loading: boolean;
+  typeQuestions: number;
 }

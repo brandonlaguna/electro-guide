@@ -1,7 +1,5 @@
-import { P } from "@/components/Common/Typography";
 import MainLayout from "@/components/MainLayout";
 import { StepTest } from "@/components/StepTest";
-import { View } from "react-native";
 import { useExcercise } from "./hook/useExcercise";
 
 const Excercise = () => {

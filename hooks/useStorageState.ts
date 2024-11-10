@@ -52,6 +52,12 @@ export function useStorageState(key: string): UseStateHook<string> {
       }
     } else {
       SecureStore.getItemAsync(key).then((value) => {
+        console.log(
+          "🚀 ~ SecureStore.getItemAsync ~ value:",
+          value,
+          " from: ",
+          key
+        );
         setState(value);
       });
     }
@@ -60,6 +66,7 @@ export function useStorageState(key: string): UseStateHook<string> {
   // Set
   const setValue = React.useCallback(
     (value: string | null) => {
+      console.log("🚀 ~ useStorageState ~ value:", value, key);
       setState(value);
       setStorageItemAsync(key, value);
     },

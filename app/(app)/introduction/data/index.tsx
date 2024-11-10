@@ -1,14 +1,18 @@
-import { ImageSourcePropType } from "react-native";
 import {
   BasicDefinition,
   CargaDistribuida,
   Coulomb,
   DensidadLinearCarga,
+  Distribution,
+  ElectricFieldIntegral,
+  FormsKnows,
+  GaussLaw,
+  IntegralElectric,
   Nomenclatures,
-  Nomenclatures2,
   PotentialElectricCenterCircle,
   PotentialElectricEquiTriangle,
   RelacionCargaLongitud,
+  UniformlyChargedSphere,
 } from "../Contents";
 import { IData } from "@/components/Questionnaire/models/questionnaireModel";
 import { PotentialElectricRectBar } from "../Contents/PotentialElectricRectBar";
@@ -56,92 +60,137 @@ export const data: IData[] = [
   },
   {
     id: 4,
-    title: "¿Que nomenclaturas se utilizan?",
+    title: "¿integrales en el potencial electrico? ",
     subTitle: "",
-    content: <Nomenclatures2 />,
+    content: <IntegralElectric />,
     images: [],
     disableBack: false,
     disableNext: false,
   },
   {
     id: 5,
-    title: "¿puedo encontrar el potencial eléctrico en figuras geométricas?",
+    title: "Distribución uniforme de Carga:",
     subTitle: "",
-    content: <CargaDistribuida />,
-    images: [
-      {
-        source: require("@/assets/images/introduction/carga-distribuida.jpg"),
-      },
-    ],
+    content: <Distribution />,
+    images: [],
     disableBack: false,
     disableNext: false,
   },
   {
     id: 6,
-    title: "Relación entre la Carga dq y la Longitud dx",
+    title: "Ley de Gauss:",
     subTitle: "",
-    content: <RelacionCargaLongitud />,
-    images: [
-      {
-        source: require("@/assets/images/introduction/relacion-carga-longitud.jpg"),
-      },
-      {
-        source: require("@/assets/images/introduction/relacion-carga-longitud-2.jpg"),
-      },
-    ],
+    content: <GaussLaw />,
+    images: [],
     disableBack: false,
     disableNext: false,
   },
   {
     id: 7,
-    title: "Potencial Eléctrico de una Barra Recta (Integración)",
+    title: "Integral del campo eléctrico: ",
     subTitle: "",
-    content: <PotentialElectricRectBar />,
-    images: [
-      {
-        source: require("@/assets/images/introduction/electric-potential-rect-bar-integration.jpg"),
-      },
-    ],
+    content: <ElectricFieldIntegral />,
+    images: [],
     disableBack: false,
     disableNext: false,
   },
   {
     id: 8,
-    title: "Potencial Eléctrico en el Centro de un Triángulo Equilátero:",
+    title: "¿Qué formulas deberia conocer y por que? ",
     subTitle: "",
-    content: <PotentialElectricEquiTriangle />,
-    images: [
-      {
-        source: require("@/assets/images/introduction/electric-potential-equi-triangle.jpg"),
-      },
-    ],
+    content: <FormsKnows />,
+    images: [],
     disableBack: false,
     disableNext: false,
   },
   {
     id: 9,
-    title: "Potencial Eléctrico en el Centro de un Círculo:",
+    title: "Campo eléctrico de una esfera uniformemente cargada:",
     subTitle: "",
-    content: <PotentialElectricCenterCircle />,
-    images: [
-      {
-        source: require("@/assets/images/introduction/electric-potential-center-circle.jpg"),
-      },
-    ],
+    content: <UniformlyChargedSphere />,
+    images: [],
     disableBack: false,
     disableNext: false,
   },
-  {
-    id: 10,
-    title: "densidad lineal de carga:",
-    subTitle: "",
-    content: <DensidadLinearCarga />,
-    images: [
-      {
-        source: require("@/assets/images/introduction/linear-charge-density.jpg"),
-      },
-    ],
-    disableBack: false,
-    disableNext: false,
-  },
+  // {
+  //   id: 5,
+  //   title: "¿puedo encontrar el potencial eléctrico en figuras geométricas?",
+  //   subTitle: "",
+  //   content: <CargaDistribuida />,
+  //   images: [
+  //     {
+  //       source: require("@/assets/images/introduction/carga-distribuida.jpg"),
+  //     },
+  //   ],
+  //   disableBack: false,
+  //   disableNext: false,
+  // },
+  // {
+  //   id: 6,
+  //   title: "Relación entre la Carga dq y la Longitud dx",
+  //   subTitle: "",
+  //   content: <RelacionCargaLongitud />,
+  //   images: [
+  //     {
+  //       source: require("@/assets/images/introduction/relacion-carga-longitud.jpg"),
+  //     },
+  //     {
+  //       source: require("@/assets/images/introduction/relacion-carga-longitud-2.jpg"),
+  //     },
+  //   ],
+  //   disableBack: false,
+  //   disableNext: false,
+  // },
+  // {
+  //   id: 7,
+  //   title: "Potencial Eléctrico de una Barra Recta (Integración)",
+  //   subTitle: "",
+  //   content: <PotentialElectricRectBar />,
+  //   images: [
+  //     {
+  //       source: require("@/assets/images/introduction/electric-potential-rect-bar-integration.jpg"),
+  //     },
+  //   ],
+  //   disableBack: false,
+  //   disableNext: false,
+  // },
+  // {
+  //   id: 8,
+  //   title: "Potencial Eléctrico en el Centro de un Triángulo Equilátero:",
+  //   subTitle: "",
+  //   content: <PotentialElectricEquiTriangle />,
+  //   images: [
+  //     {
+  //       source: require("@/assets/images/introduction/electric-potential-equi-triangle.jpg"),
+  //     },
+  //   ],
+  //   disableBack: false,
+  //   disableNext: false,
+  // },
+  // {
+  //   id: 9,
+  //   title: "Potencial Eléctrico en el Centro de un Círculo:",
+  //   subTitle: "",
+  //   content: <PotentialElectricCenterCircle />,
+  //   images: [
+  //     {
+  //       source: require("@/assets/images/introduction/electric-potential-center-circle.jpg"),
+  //     },
+  //   ],
+  //   disableBack: false,
+  //   disableNext: false,
+  // },
+  // {
+  //   id: 10,
+  //   title: "densidad lineal de carga:",
+  //   subTitle: "",
+  //   content: <DensidadLinearCarga />,
+  //   images: [
+  //     {
+  //       source: require("@/assets/images/introduction/linear-charge-density.jpg"),
+  //     },
+  //   ],
+  //   disableBack: false,
+  //   disableNext: false,
+  // },
 ];

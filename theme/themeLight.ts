@@ -24,7 +24,8 @@ export const themeLight = StyleSheet.create({
   },
   textInput: {
     backgroundColor: primary.main,
-    color: greyDark[100],
+    color: primary.main,
+    borderColor: primary.main,
   },
   typography: {
     color: greyLight.main,
@@ -36,5 +37,9 @@ export const themeLight = StyleSheet.create({
   buttonAnswerStep: {
     backgroundColor: greyLight[100],
     color: primary.main,
+  },
+  mainButton: {
+    backgroundColor: primary.main,
+    color: whiteColor.main,
   },
 });

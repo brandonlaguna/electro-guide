@@ -1,8 +1,14 @@
 import { LargeCard } from "@/components/Common/Cards";
-import { H1, H2, H3, H5, P } from "@/components/Common/Typography";
+import { H1, H2, H3, H5, H6, P } from "@/components/Common/Typography";
 import MainLayout from "@/components/MainLayout";
 import { ThemedText } from "@/components/ThemedText";
-import { fancyColorLight, greyLight, whiteColor } from "@/theme/colors";
+import {
+  danger,
+  fancyColorLight,
+  greyLight,
+  success,
+  whiteColor,
+} from "@/theme/colors";
 import { router } from "expo-router";
 import { FC } from "react";
 import {
@@ -11,10 +17,9 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { Button, IconButton } from "react-native-paper";
+import { Modal, IconButton, Portal, Button } from "react-native-paper";
 import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 import { DefaultTheme, useTheme } from "styled-components/native";
-import QuestionnaireView from "../introduction/Contents/QuestionnaireView";
 import { useHome } from "@/hooks/useHome";
 
 interface IIconText {
@@ -79,22 +84,40 @@ const ModuleCardView: FC<IModuleCardView> = (props) => {
 const Home = () => {
   const theme = useTheme();
   const styles = getStyles({ theme });
-  const { introduction } = useHome();
+  const {
+    introduction,
+    excercise,
+    evaluation,
+    disableIntroduction,
+    disableExcercise,
+    disableEvaluation,
+    visible,
+    handleHideModal,
+    modalMessage,
+    handleNavigateIntroduction,
+    handleClearIntroductionDatabase,
+    handleNavigateEvaluation,
+    handleNavigateExcercise,
+    whichErase,
+  } = useHome();
+
+  const containerStyle = { backgroundColor: "white", padding: 20 };
+
   return (
     <MainLayout>
       <ScrollView>
-        <H5>Evalúa tu conimiento</H5>
+        <H5>Evalúa tu conocimiento</H5>
         <ModuleCardView
           styles={styles}
           title={"Introduccion"}
           source={require("@/assets/images/ing1.png")}
           backgroundColor={fancyColorLight.indigo}
-          disabled={false}
+          disabled={disableIntroduction}
           iconText={[
             {
               icon: "progress-star",
               text: `${
-                introduction !== null
+                introduction !== null && introduction.totalProgress > 0
                   ? Intl.NumberFormat("es-Co", {
                       minimumFractionDigits: 0,
                       maximumFractionDigits: 0,
@@ -111,7 +134,7 @@ const Home = () => {
               text: `${introduction?.questionnaire.correct} / ${introduction?.questionnaire.total} preguntas`,
             },
           ]}
-          onPressNext={() => router.navigate("/introduction")}
+          onPressNext={handleNavigateIntroduction}
         />
 
         <ModuleCardView
@@ -119,34 +142,92 @@ const Home = () => {
           title={"Ejercicios"}
           source={require("@/assets/images/ing2.png")}
           backgroundColor={fancyColorLight.green}
-          disabled={
-            introduction !== null
-              ? (introduction.questionnaire.correct /
-                  introduction.questionnaire.total) *
-                  100 <
-                50
-              : false
-          }
+          disabled={disableExcercise}
           iconText={[
-            { icon: "progress-star", text: "100% progreso" },
-            { icon: "clipboard-text-outline", text: "10/10 actividades" },
+            {
+              icon: "progress-star",
+              text: `${
+                excercise !== null && excercise.totalProgress > 0
+                  ? Intl.NumberFormat("es-Co", {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    }).format(
+                      (excercise.completedProgress / excercise.totalProgress) *
+                        100
+                    )
+                  : "0"
+              }% progreso`,
+            },
+            {
+              icon: "clipboard-text-outline",
+              text: `${excercise?.completedProgress} / ${excercise?.totalProgress} actividades`,
+            },
           ]}
-          onPressNext={() => router.navigate("excercise")}
+          onPressNext={handleNavigateExcercise}
         />
 
         <ModuleCardView
           styles={styles}
           title={"Evaluacion"}
-          source={require("@/assets/images/ing1.png")}
+          source={require("@/assets/images/img3.png")}
           backgroundColor={fancyColorLight.blue}
-          disabled={true}
+          disabled={disableEvaluation}
           iconText={[
-            { icon: "progress-star", text: "100% progreso" },
-            { icon: "clipboard-text-outline", text: "10/10 actividades" },
+            {
+              icon: "progress-star",
+              text: `${
+                evaluation !== null && evaluation.totalProgress > 0
+                  ? Intl.NumberFormat("es-Co", {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    }).format(
+                      (evaluation.completedProgress /
+                        evaluation.totalProgress) *
+                        100
+                    )
+                  : "0"
+              }% progreso`,
+            },
+            {
+              icon: "clipboard-text-outline",
+              text: `${evaluation?.questionnaire.correct} / ${evaluation?.questionnaire.total} preguntas`,
+            },
           ]}
-          onPressNext={() => console.log("Introduccion Selected")}
+          onPressNext={handleNavigateEvaluation}
         />
       </ScrollView>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={handleHideModal}
+          contentContainerStyle={styles.modalStyle}
+          style={styles.containerModal}
+        >
+          <View>
+            <H6>{modalMessage}</H6>
+            <View style={styles.actionModal}>
+              <Button
+                icon="check"
+                mode="contained"
+                onPress={() => handleClearIntroductionDatabase(whichErase)}
+                style={styles.checkButtonModal}
+                textColor={whiteColor.main}
+              >
+                Si
+              </Button>
+              <Button
+                icon="close"
+                mode="contained"
+                onPress={handleHideModal}
+                style={styles.closeButtonModal}
+                textColor={whiteColor.main}
+              >
+                No
+              </Button>
+            </View>
+          </View>
+        </Modal>
+      </Portal>
     </MainLayout>
   );
 };
@@ -157,6 +238,18 @@ const getStyles = ({ theme }: { theme: any }) =>
       flex: 1,
       flexDirection: "column",
       justifyContent: "space-evenly",
+    },
+    containerModal: { paddingHorizontal: 20 },
+    modalStyle: { backgroundColor: "white", padding: 20 },
+    actionModal: {
+      flexDirection: "row",
+      justifyContent: "space-evenly",
+    },
+    checkButtonModal: {
+      backgroundColor: success.light,
+    },
+    closeButtonModal: {
+      backgroundColor: danger.light,
     },
     titleContainer: {},
     subtitleContainer: {},

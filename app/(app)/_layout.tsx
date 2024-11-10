@@ -53,13 +53,6 @@ export default function TabLayout() {
             }}
           />
           <Drawer.Screen
-            name="evaluation" // This is the name of the page and must match the url from root
-            options={{
-              drawerLabel: "Evaluation",
-              title: "Evaluation",
-            }}
-          />
-          <Drawer.Screen
             name="introduction/index" // This is the name of the page and must match the url from root
             options={{
               drawerLabel: "Introduccion",
@@ -78,6 +71,13 @@ export default function TabLayout() {
             options={{
               drawerLabel: "Ejercicios",
               title: "Ejercicios",
+            }}
+          />
+          <Drawer.Screen
+            name="evaluation/index" // This is the name of the page and must match the url from root
+            options={{
+              drawerLabel: "Evaluacion",
+              title: "Evaluacion",
             }}
           />
         </Drawer>

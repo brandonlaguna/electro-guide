@@ -1,4 +1,7 @@
-import { H3, H6 } from "@/components/Common/Typography";
+import { H6 } from "@/components/Common/Typography";
+import React from "react";
+import { Linking } from "react-native";
+import { Text } from "react-native-paper";
 
 export const Nomenclatures = () => {
   return (
@@ -23,6 +26,34 @@ export const Nomenclatures = () => {
         r: Es la distancia desde la carga fuente q hasta un punto en el espacio.
         Las distancias rₐ y rᵦ indican las posiciones de los puntos a y b.
       </H6>
+      <H6>
+        dr: Es un pequeño cambio diferencial en la posición radial desde la
+        carga fuente, representando un desplazamiento en la dirección radial.{" "}
+      </H6>
+      <H6>
+        dl: Es un pequeño cambio diferencial en la posición a lo largo de una
+        trayectoria curvada entre los puntos a y b.
+      </H6>
+      <H6>
+        a y b: Son dos puntos a lo largo de una trayectoria curvada en el campo
+        eléctrico. La trayectoria azul punteada: Es la trayectoria que sigue la
+        carga de prueba q₀ entre los puntos a y b.
+      </H6>
+      <H6>
+        ϕ: Representa el ángulo entre el vector de desplazamiento radial dr y el
+        diferencial de longitud dl.
+      </H6>
+      <H6>Webgrafía:</H6>
+      <Text
+        style={{ color: "blue", fontSize: 8 }}
+        onPress={() =>
+          Linking.openURL(
+            "https://electropreguntas.com/potencial-electrico-conceptos-basicos-y-aplicaciones/"
+          )
+        }
+      >
+        https://electropreguntas.com/potencial-electrico-conceptos-basicos-y-aplicaciones/
+      </Text>
     </>
   );
 };

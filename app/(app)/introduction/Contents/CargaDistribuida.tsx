@@ -1,4 +1,5 @@
 import { H3, H6 } from "@/components/Common/Typography";
+import React from "react";
 
 export const CargaDistribuida = () => {
   return (
