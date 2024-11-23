@@ -22,6 +22,15 @@ const CustomDrawerContent = (props: any) => {
             </Button>
           )}
         />
+        <DrawerItem
+          label=""
+          onPress={() => router.push("/about")}
+          icon={({ color, size }) => (
+            <Button icon="information-outline" textColor={theme.drawer.color}>
+              Acerca de
+            </Button>
+          )}
+        />
       </View>
     </DrawerContentScrollView>
   );

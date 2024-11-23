@@ -1,7 +1,4 @@
-import { Tabs } from "expo-router";
 import React from "react";
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Provider } from "react-redux";
 import { Provider as NativePaperProvider } from "react-native-paper";
@@ -19,9 +16,17 @@ export default function TabLayout() {
     <Provider store={store}>
       <NativePaperProvider>
         <Drawer
-          drawerContent={(props) => <CustomDrawerContent {...props} />}
+          drawerContent={(props: any) => <CustomDrawerContent {...props} />}
           screenOptions={{
-            header: ({ navigation, route, options }) => {
+            header: ({
+              navigation,
+              route,
+              options,
+            }: {
+              navigation: any;
+              route: any;
+              options: any;
+            }) => {
               const title = getHeaderTitle(options, route.name);
               return (
                 <AppHeader
